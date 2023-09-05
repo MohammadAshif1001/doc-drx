@@ -2,6 +2,7 @@
 import Link from 'next/link';
 import React, { useState, useEffect, useRef } from 'react';
 import { RiMenuFill, RiGithubFill } from 'react-icons/ri'
+import ToggleBtn from '../togglebutton/ToggleBtn'
 
 const Navbar = () => {
     const [windowWidth, setWindowWidth] = useState(null);
@@ -35,8 +36,9 @@ const Navbar = () => {
         setMobileMenuOpen(false);
     };
 
+
     return (
-        <div className="main border-2 h-12 flex items-center justify-between px-12">
+        <div className="main border-b-2 h-12 flex items-center justify-between px-12">
             <div className="logo inline2 font-bold font-color">DOC_DRX</div>
             {windowWidth <= 768 ? (
                 <>
@@ -44,7 +46,8 @@ const Navbar = () => {
                         className="hamburger-icon cursor-pointer"
                         onClick={toggleMobileMenu}
                     >
-                        <RiMenuFill className='font-bold text-black text-2xl' />
+                        <RiMenuFill className='font-bold text-black text-2xl mr-1' />
+                        <ToggleBtn />
                     </div>
                     {/* Mobile Menu */}
                     {isMobileMenuOpen && (
@@ -63,13 +66,14 @@ const Navbar = () => {
                                 <Link href="https:/github.com/darkxxdevs/doc-drx">
                                     Github
                                 </Link>
+
                             </div>
                         </div>
                     )}
                 </>
             ) : (
                 <div className="links">
-                    <ul className="flex gap-5">
+                    <ul className="flex gap-8">
                         <li>
                             <Link href="/">Home</Link>
                         </li>
@@ -83,6 +87,10 @@ const Navbar = () => {
                             <Link href="https:/github.com/darkxxdevs/doc-drx">
                                 <RiGithubFill className='text-2xl' />
                             </Link>
+                        </li>
+
+                        <li>
+                            <ToggleBtn />
                         </li>
                     </ul>
                 </div>

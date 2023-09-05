@@ -1,7 +1,8 @@
 import './globals.css'
 import { Inter } from 'next/font/google'
 import Navbar from './components/navbar/Navbar'
-import { ThemeProvider } from "@/components/theme-provider"
+import { ThemeProvider } from "./components/theme-provider";
+import { ToggleBtn } from "./components/togglebutton/ToggleBtn";
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -14,7 +15,6 @@ export default function RootLayout({ children }) {
 
 
   return (
-
     <>
       <html lang="en" suppressHydrationWarning>
         <head />
