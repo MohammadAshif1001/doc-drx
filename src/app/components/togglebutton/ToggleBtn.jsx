@@ -22,6 +22,7 @@ const ToggleBtn = () => {
 
     return (
         <button
+
             className={`w-fit absolute right-5 top-2 p-1 outline-none rounded-lg flex m-1 active:scale-100 duration-200 bacground-opacity-0 dark:bg-[#0000] `}
             onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
         >
