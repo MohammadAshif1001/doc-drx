@@ -38,7 +38,7 @@ const Navbar = () => {
 
 
     return (
-        <div className="main border-b-2 h-12 flex items-center justify-between px-12">
+        <div className="main outline-none shadow-lg dark:shadow-md dark:shadow-[#ccc] h-12 flex items-center justify-between px-12">
             <div className="logo inline2 font-bold font-color">DOC_DRX</div>
             {windowWidth <= 768 ? (
                 <>
@@ -46,7 +46,7 @@ const Navbar = () => {
                         className="hamburger-icon cursor-pointer"
                         onClick={toggleMobileMenu}
                     >
-                        <RiMenuFill className='font-bold text-black text-2xl mr-1' />
+                        <RiMenuFill className='font-bold text-black text-2xl mr-5 dark:text-white' />
                         <ToggleBtn />
                     </div>
                     {/* Mobile Menu */}
@@ -62,6 +62,9 @@ const Navbar = () => {
                                 </Link>
                                 <Link href="/aboutus" passHref>
                                     About Us
+                                </Link>
+                                <Link href="/login" passHref>
+                                    Login
                                 </Link>
                                 <Link href="https:/github.com/darkxxdevs/doc-drx">
                                     Github
@@ -82,6 +85,11 @@ const Navbar = () => {
                         </li>
                         <li>
                             <Link href="/aboutus">About Us</Link>
+                        </li>
+                        <li>
+                            <Link href="/login" passHref>
+                                Login
+                            </Link>
                         </li>
                         <li>
                             <Link href="https:/github.com/darkxxdevs/doc-drx">
