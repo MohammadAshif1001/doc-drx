@@ -15,15 +15,22 @@ const page = () => {
                 className="login-form dark:shadow-[grey] dark:border-[#ccc] w-[90%] md:w-[50%] lg:w-[25%] shadow-2xl rounded-[10px] overflow-hidden pb-4"
             >
                 <div className={`${headingfont.className} h-12 pt-7 text-center`}>
-                    <h1 className="text-3xl md:text-5xl lg:text-7xl">LOGIN</h1>
+                    <h1 className="text-3xl md:text-5xl lg:text-7xl">Sign Up</h1>
                 </div>
 
                 <div className="credentials flex flex-col mt-10 md:mt-20 w-[90%] mx-auto md:w-[60%] lg:w-[60%]">
+                    <label htmlFor="username" className='font-bold'>Username</label>
+                    <input
+                        type="text"
+                        className="border-2 mb-3 md:mb-5 rounded-[10px] px-2 border-[#ccc]"
+                        placeholder="Create a user name"
+                        required
+                    />
                     <label htmlFor="username" className="font-bold">
                         Email
                     </label>
                     <input
-                        type="mail"
+                        type="email"
                         className="border-2 mb-3 md:mb-5 rounded-[10px] px-2 border-[#ccc]"
                         placeholder="Enter your email"
                         required
@@ -35,6 +42,12 @@ const page = () => {
                         type="password"
                         className="border-2 rounded-[10px] px-2 border-[#ccc]"
                         placeholder="Enter your password"
+                        required
+                    />
+                    <input
+                        type="password"
+                        className="border-2 rounded-[10px] px-2 mt-4 border-[#ccc]"
+                        placeholder="Confirm your password"
                         required
                     />
 
@@ -50,8 +63,8 @@ const page = () => {
                     </div>
 
                     <div className="slink mb-8 text-center font-bold text-[grey]">
-                        <h5 className='text-[12px] '>Don't have an account ?<span className='text-[blue]' ><Link href="/sign-up" >
-                            Sign up
+                        <h5 className='text-[12px] '>Already have an account ?<span className='text-[blue]' ><Link href="/login" >
+                            Login
                         </Link></span></h5>
 
                     </div>

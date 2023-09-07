@@ -1,108 +1,78 @@
 "use client"
 import Link from 'next/link';
-import React, { useState, useEffect, useRef } from 'react';
-import { RiMenuFill, RiGithubFill } from 'react-icons/ri'
-import ToggleBtn from '../togglebutton/ToggleBtn'
+import React, { useState, useRef } from 'react';
+import { RiMenuFill, RiGithubFill } from 'react-icons/ri';
+import ToggleBtn from '../togglebutton/ToggleBtn';
 
 const Navbar = () => {
-    const [windowWidth, setWindowWidth] = useState(null);
     const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
     const menuDisplayRef = useRef(null);
 
-    useEffect(() => {
-        const updateWindowWidth = () => {
-            setWindowWidth(window.innerWidth);
-        };
-
-        // Initial window width value
-        updateWindowWidth();
-
-        // Event listener on the window object to dynamically change the windowWidth on resize
-        window.addEventListener('resize', updateWindowWidth);
-
-        // Removal of event listener when the component unmounts
-        return () => {
-            window.removeEventListener('resize', updateWindowWidth);
-        };
-    }, []);
-
-    // Toggle mobile menu visibility
+    // menu toggle for mobile menu , LOL!!!
     const toggleMobileMenu = () => {
         setMobileMenuOpen(!isMobileMenuOpen);
     };
 
-    // Close mobile menu when a link is clicked
+    // method to close menu when a link is clicked :)
     const handleLinkClick = () => {
         setMobileMenuOpen(false);
     };
 
-
     return (
         <div className="main outline-none shadow-lg dark:shadow-md dark:shadow-[#ccc] h-12 flex items-center justify-between px-12">
             <div className="logo inline2 font-bold font-color">DOC_DRX</div>
-            {windowWidth <= 768 ? (
-                <>
-                    <div
-                        className="hamburger-icon cursor-pointer"
-                        onClick={toggleMobileMenu}
-                    >
-                        <RiMenuFill className='font-bold text-black text-2xl mr-5 dark:text-white' />
-                        <ToggleBtn />
-                    </div>
-                    {/* Mobile Menu */}
-                    {isMobileMenuOpen && (
-                        <div className="mob-links flex rounded-md flex-col absolute top-10 right-4 bg-white text-black w-32" ref={menuDisplayRef}>
-                            <div className='navdiv flex flex-col h-40 border-2 items-center justify-center'>
-
-                                <Link href="/" passHref>
-                                    Home
-                                </Link>
-                                <Link href="/history" passHref>
-                                    History
-                                </Link>
-                                <Link href="/aboutus" passHref>
-                                    About Us
-                                </Link>
-                                <Link href="/login" passHref>
-                                    Login
-                                </Link>
-                                <Link href="https:/github.com/darkxxdevs/doc-drx">
-                                    Github
-                                </Link>
-
-                            </div>
-                        </div>
-                    )}
-                </>
-            ) : (
-                <div className="links">
-                    <ul className="flex gap-8">
-                        <li>
-                            <Link href="/">Home</Link>
-                        </li>
-                        <li>
-                            <Link href="/history">History</Link>
-                        </li>
-                        <li>
-                            <Link href="/aboutus">About Us</Link>
-                        </li>
-                        <li>
-                            <Link href="/login" passHref>
-                                Login
-                            </Link>
-                        </li>
-                        <li>
-                            <Link href="https:/github.com/darkxxdevs/doc-drx">
-                                <RiGithubFill className='text-2xl' />
-                            </Link>
-                        </li>
-
-                        <li>
-                            <ToggleBtn />
-                        </li>
-                    </ul>
+            {/* Hamburger menu only visible on smaller screen */}
+            <div className="lg:hidden hamburger-icon cursor-pointer" onClick={toggleMobileMenu}>
+                <RiMenuFill className='font-bold text-black text-2xl dark:text-white' />
+            </div>
+            {/* Mobile Menu */}
+            <div className={`mob-links flex flex-col dark:bg-[#121212ff] absolute top-10 right-4 bg-white shadow-xl dark:shadow-[grey] text-black w-32 ${isMobileMenuOpen ? 'block' : 'hidden'}`} ref={menuDisplayRef}>
+                <div className='navdiv flex flex-col h-40 border-2 items-center dark:text-white justify-center'>
+                    <Link href="/" passHref onClick={handleLinkClick}>
+                        Home
+                    </Link>
+                    <Link href="/history" passHref onClick={handleLinkClick}>
+                        History
+                    </Link>
+                    <Link href="/aboutus" passHref onClick={handleLinkClick}>
+                        About Us
+                    </Link>
+                    <Link href="/login" passHref onClick={handleLinkClick}>
+                        Login
+                    </Link>
+                    <Link href="https:/github.com/darkxxdevs/doc-drx" onClick={handleLinkClick}>
+                        Github
+                    </Link>
+                    <ToggleBtn />
                 </div>
-            )}
+            </div>
+            {/* Desktop Links */}
+            <div className="links hidden lg:flex gap-8">
+                <ul className="flex gap-8">
+                    <li>
+                        <Link href="/">Home</Link>
+                    </li>
+                    <li>
+                        <Link href="/history">History</Link>
+                    </li>
+                    <li>
+                        <Link href="/aboutus">About Us</Link>
+                    </li>
+                    <li>
+                        <Link href="/login" passHref>
+                            Login
+                        </Link>
+                    </li>
+                    <li>
+                        <Link href="https:/github.com/darkxxdevs/doc-drx">
+                            <RiGithubFill className='text-2xl' />
+                        </Link>
+                    </li>
+                    <li>
+                        <ToggleBtn />
+                    </li>
+                </ul>
+            </div>
         </div>
     );
 };
