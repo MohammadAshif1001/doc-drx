@@ -1,6 +1,8 @@
+"use client"
 import React from 'react';
 import Link from 'next/link';
 import { Crete_Round } from 'next/font/google';
+
 
 const headingfont = Crete_Round({
     subsets: ['latin'],

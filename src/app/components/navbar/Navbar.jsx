@@ -1,6 +1,6 @@
 "use client"
 import Link from 'next/link';
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { RiMenuFill, RiGithubFill } from 'react-icons/ri';
 import ToggleBtn from '../togglebutton/ToggleBtn';
 
@@ -17,6 +17,28 @@ const Navbar = () => {
     const handleLinkClick = () => {
         setMobileMenuOpen(false);
     };
+    // Use effect to add event listeners when the component mounts
+    useEffect(() => {
+        // Function to handle clicks outside of the menu
+        const handleOutsideClick = (e) => {
+            if (menuDisplayRef.current && !menuDisplayRef.current.contains(e.target)) {
+                setMobileMenuOpen(false);
+            }
+        };
+
+        // Add click and blur event listeners to the document body
+        document.body.addEventListener('click', handleOutsideClick);
+        document.body.addEventListener('blur', handleOutsideClick);
+
+        // Clean up event listeners when the component unmounts
+        return () => {
+            document.body.removeEventListener('click', handleOutsideClick);
+            document.body.removeEventListener('blur', handleOutsideClick);
+        };
+    }, []);
+
+
+
 
     return (
         <div className="main outline-none shadow-lg dark:shadow-md dark:shadow-[#ccc] h-12 flex items-center justify-between px-12">
@@ -26,8 +48,12 @@ const Navbar = () => {
                 <RiMenuFill className='font-bold text-black text-2xl dark:text-white' />
             </div>
             {/* Mobile Menu */}
-            <div className={`mob-links flex flex-col dark:bg-[#121212ff] absolute top-10 right-4 bg-white shadow-xl dark:shadow-[grey] text-black w-32 ${isMobileMenuOpen ? 'block' : 'hidden'}`} ref={menuDisplayRef}>
-                <div className='navdiv flex flex-col h-40 border-2 items-center dark:text-white justify-center'>
+            <div
+                className={`mob-links flex flex-col dark:bg-[#121212ff] absolute top-10 right-4 bg-white shadow-xl dark:shadow-[grey] text-black w-32 ${isMobileMenuOpen ? 'block' : 'hidden'}`} ref={menuDisplayRef}>
+                <div
+                    onBlur={handleLinkClick}
+                    className='navdiv flex flex-col h-40 border-2 items-center dark:text-white justify-center'>
+
                     <Link href="/" passHref onClick={handleLinkClick}>
                         Home
                     </Link>

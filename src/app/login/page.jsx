@@ -1,4 +1,5 @@
-import React from 'react';
+"use client"
+import React, { useState } from 'react';
 import Link from 'next/link';
 import { Crete_Round } from 'next/font/google';
 
@@ -8,6 +9,13 @@ const headingfont = Crete_Round({
 });
 
 const page = () => {
+    const [mail, setMail] = useState('')
+    const [pass, setPass] = useState('')
+    const [focused, setFocused] = useState(false)
+
+
+
+
     return (
         <div className="main flex items-center justify-center border-2 h-[calc(100vh-3rem)] overflow-hidden">
             <form
@@ -26,6 +34,10 @@ const page = () => {
                         type="mail"
                         className="border-2 mb-3 md:mb-5 rounded-[10px] px-2 border-[#ccc]"
                         placeholder="Enter your email"
+                        value={mail}
+                        onChange={(e) => {
+                            setMail(e.target.value)
+                        }}
                         required
                     />
                     <label htmlFor="password" className="font-bold">
@@ -35,6 +47,10 @@ const page = () => {
                         type="password"
                         className="border-2 rounded-[10px] px-2 border-[#ccc]"
                         placeholder="Enter your password"
+                        value={pass}
+                        onChange={(e) => {
+                            setPass(e.target.value)
+                        }}
                         required
                     />
 
