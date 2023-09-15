@@ -41,7 +41,7 @@ const Navbar = () => {
 
 
     return (
-        <div className="main outline-none shadow-lg dark:shadow-md dark:shadow-[#ccc] h-12 flex items-center justify-between px-12">
+        <div className="main outline-none shadow-lg dark:shadow-md dark:shadow-[#ccc] h-12 flex items-center justify-between px-2">
             <div className="logo inline2 font-bold font-color">DOC_DRX</div>
             {/* Hamburger menu only visible on smaller screen */}
             <div className="lg:hidden hamburger-icon cursor-pointer" onClick={toggleMobileMenu}>
@@ -49,10 +49,10 @@ const Navbar = () => {
             </div>
             {/* Mobile Menu */}
             <div
-                className={`mob-links flex flex-col dark:bg-[#121212ff] absolute top-10 right-4 bg-white shadow-xl dark:shadow-[grey] text-black w-32 ${isMobileMenuOpen ? 'block' : 'hidden'}`} ref={menuDisplayRef}>
+                className={`mob-links flex flex-col dark:bg-[#121212ff] absolute top-10 right-4 bg-white shadow-xxl dark:shadow-[grey] text-black w-32 ${isMobileMenuOpen ? 'block' : 'hidden'}`} ref={menuDisplayRef}>
                 <div
                     onBlur={handleLinkClick}
-                    className='navdiv flex flex-col h-40 border-2 items-center dark:text-white justify-center'>
+                    className='navdiv flex flex-col h-40 border-2 flex-start p-1 my-1 dark:text-white justify-center'>
 
                     <Link href="/" passHref onClick={handleLinkClick}>
                         Home
